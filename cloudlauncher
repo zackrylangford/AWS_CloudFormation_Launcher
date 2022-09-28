@@ -28,6 +28,8 @@ if [[ $input -eq 1 ]]; then
 	echo -e "1" 
 	echo -e "$(aws cloudformation wait stack-create-complete --stack-name myteststack)"
 	echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)"
+
+	
 ### Actual Commands for later use
 ### echo -e "$(command)\n\n"
 elif [[ $input -eq 2 ]]; then

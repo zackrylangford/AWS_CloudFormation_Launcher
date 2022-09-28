@@ -1,5 +1,5 @@
 
-Description: Template for launching 2 VMs at once for Pheonix Corporation
+Description: Template for launching 2 unique EC2s at once.  
 Parameters: 
  
 ### VM1 Specs

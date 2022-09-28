@@ -1,5 +1,5 @@
 
-Description: Template for launching a single VM
+Description: Template for launching a single EC2 instance
 Parameters: 
   VMInstanceType:
     Description: Type of VM that the user wants to launch 
