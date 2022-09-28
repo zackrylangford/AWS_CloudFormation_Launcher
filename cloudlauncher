@@ -1,8 +1,10 @@
 #!/bin/bash
 
 while [[ ${can_continue}=true ]]; do
-
-	echo -e "What CloudFormation Template would you like to launch today?"
+	sleep 1
+	echo -e "\n.\n.\n.\n.\n.\n\n\n\nWelcome to CloudLauncher!"
+	sleep 1 
+	echo -e "\n\n\n\nWhat CloudFormation stack would you like to launch today?"
 	echo -e "\n1. Single VPC with 4 subnets"
 	echo -e "\n2. One EC2 Instance"
 	echo -e "\n3. Two EC2 Instances"
@@ -23,7 +25,7 @@ read input
 # Launch script for 01 - VPC with 4 Subnets
 
 if [[ $input -eq 1 ]]; then
-	echo -e "\n.\n.\n.\n.Launching VPC with 4 Subnets.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching VPC with 4 Subnets.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 	echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/03_1_S3_Bucket_NO_Parameters.yml)"
 	sleep 1
@@ -45,7 +47,7 @@ if [[ $input -eq 1 ]]; then
 # Launch command for 02 - 1 EC2 instance 
 
 elif [[ $input -eq 2 ]]; then
-	echo -e "\n.\n.\n.\n.Launching 1 EC2 instance.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching 1 EC2 instance.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 
 
@@ -53,24 +55,24 @@ elif [[ $input -eq 2 ]]; then
 # Launch command for 02 - 2 EC2 instances 
 
 elif [[ $input -eq 3 ]]; then
-	echo -e "\n.\n.\n.\n.Launching 2 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching 2 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 
 # Launch command for 02 - 3 EC2 instances
 elif [[ $input -eq 4 ]]; then
-	echo -e "\n.\n.\n.\n.Launching 3 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching 3 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 	
 
 # Launch command for 02 - 4 EC2 instances 
 elif [[ $input -eq 5 ]]; then
-	echo -e "\n.\n.\n.\n.Launching 4 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching 4 EC2 instances.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 # Launch command for 03 - 1 S3 Bucket
 elif [[ $input -eq 6 ]]; then
-	echo -e "\n.\n.\n.\n.Launching 1 S3 bucket.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nLaunching 1 S3 bucket.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 elif [[ $input = q ]]; then
-	echo "\n.\n.\n.\n.Quitting Now\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.Goodbye\n.\n."
+	echo -e "\n.\n.\n.\n.\nQuitting Now\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.Goodbye\n.\n."
 	break
 
 else
