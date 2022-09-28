@@ -1,18 +1,21 @@
 #!/bin/bash
 
 while [[ ${can_continue}=true ]]; do
-	sleep .10
+	sleep .5
 	echo -e "\n.\n.\n.\n.\n.\n.\n.\n."
-	echo -e "..............Welcome to CloudLauncher!.................\n" 
+	sleep .5
+	echo -e "..............Welcome to CloudLauncher!.................\n"
+	sleep .5
 	echo -e "........................................................\n"
+	sleep .5
 	echo -e "........................................................\n"
 	echo -e "  _   _   _   _   _   _   _   _   _   _   _   _   _ \n"
 	echo -e " / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \\n"
 	echo -e "(               CloudLauncher                       )\n"
 	echo -e " \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \n"
-	sleep .25
-	echo -e "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
-	sleep .1
+	sleep .5
+	echo -e "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	sleep .5
 	echo -e "\n\n\n\nWhat would you like to launch today?"
 	echo -e "\n1. Single VPC with 4 subnets"
 	echo -e "\n2. One EC2 Instance"
