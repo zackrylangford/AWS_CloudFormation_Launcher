@@ -1,0 +1,44 @@
+
+Description: Template for launching a single VM
+Parameters: 
+  VMInstanceType:
+    Description: Type of VM that the user wants to launch 
+    Type: String
+    Default: t2.micro
+    AllowedValues: 
+      - t2.micro
+      - m1.small
+      - m1.large
+  VMInstanceName: 
+    Description: Name for the instance
+    Type: String
+    Default: VirtualMachine1
+  KeyPair: 
+    Description: Select the keypair to SSH into instance
+    Type: "AWS::EC2::KeyPair::KeyName"
+  VPC: 
+    Description: Specify the VPC to launch the instance
+    Type: "AWS::EC2::VPC::Id"
+  VMSubnet: 
+    Description: Select the department subnet
+    Type: "AWS::EC2::Subnet::Id"
+  SecurityGroup: 
+    Description: Select the security Group associated with the department
+    Type: "AWS::EC2::SecurityGroup::Id"
+Resources: 
+  myEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref KeyPair
+      ImageId: ami-026b57f3c383c2eec
+      InstanceType: !Ref VMInstanceType
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref SecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref VMSubnet
+      Tags:
+        - Key: 'Name'
+          Value: !Ref VMInstanceName

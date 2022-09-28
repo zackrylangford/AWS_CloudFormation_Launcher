@@ -1,0 +1,44 @@
+### Notes to help guide my work
+
+These are the steps I need to take to get this program up and running. 
+
+### Next Steps
+COMPLETE 1. Get program to the point where it will output what I need it to in text format first (don't worry about running the actual commands at this point)
+
+COMPLETE Milestone 1 - Text output is correctly outputting the command that needs to run 
+
+2. Create a really basic template that has NO parameters to pass through to test launch capabilities 
+
+3. Change the code to actually execute the script and send it to AWS
+
+4. Connect my AWS CLI account and make a quick test bucket to see if it works
+
+5. Run the CloudLauncher Program to see if it works
+
+
+### Refactoring Tasks 
+
+1. Make the user selection prompts more simplified. Instead of one big list of options, have them select a category first, then the resources, which narrows down the templates
+and makes it less overwhelming for the user.
+
+
+
+### When it's time to actually launch
+1. Make sure that my AWS CLI is connected and working in the Linux terminal
+2. See if I am able to use the StackRoute Lab so I don't have to mess around with mine. 
+
+
+### Down the road
+1. Have this output the status of the cloudformation stack being built so the user doesn't have to log into the console, they can just launch it from the command line (eventually,
+this will be done from the GUI with status graphics, error messages, etc.)
+2. Run this program in the GUI
+3. Have it automatically add user information from AWS (CLI information so the user doesn't have to go and find it or remember it)
+4. Have it save the users info and allow them to remain logged in so they can 
+5. Figuring out how to configure the installation of the script and program on a new users machine so everything is in the right place and the script knows where to call for the templates (which directory the templates will be located in on the users machine) 
+
+
+
+
+### Current configuration notes
+
+I have a cloudformation directory on my Linux VM where I am storing the templates. I have to run the script out of this directory currently for it to work. 

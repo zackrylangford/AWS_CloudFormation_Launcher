@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Pheonix Corp S3 Bucket Template
+Parameters: 
+  BucketName: 
+    Description: Set a unique name for your S3 Bucket
+    Type: String
+    Default: Bucket1234 
+Resources: 
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      AccessControl: Private
+      BucketName: pheonix_corp_S3_bucket
+      LifecycleConfiguration: 
+      Tags:
+        - Key: Name
+          Value: !Ref BucketName

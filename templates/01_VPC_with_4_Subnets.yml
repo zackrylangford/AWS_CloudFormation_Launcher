@@ -1,0 +1,293 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: VPC with 4 subnets
+
+# This section gives the user options for naming the VPC, Subnets
+# as well as allowing the user to input a custom CIDR block structure
+# for the private network.
+
+Parameters: 
+  01VPCName: 
+    Description: Input a unique VPC Name
+    Type: String
+    Default: VPCName
+  02VPCCidrBlock:
+    Description: Input cidr block for the vpc (ex. 192.168.0.0/16)
+    Type: String
+    Default: 192.168.0.0/16
+  03Subnet1Name:
+    Description: Input a subnet name for department identification (ex. Development)
+    Type: String
+    Default: Subnet1Name
+  04SubnetCidrBlock: 
+    Description: Input the subnet cidr block (ex 192.168.10.0/24)
+    Type: String
+    Default: 192.168.10.0/24
+  05SubnetName:
+    Description: Input a subnet name for department identification (ex. Development)
+    Type: String
+    Default: Subnet2Name
+  06SubnetCidrBlock: 
+    Description: Input the subnet cidr block (ex 192.168.10.0/24)
+    Type: String
+    Default: 192.168.20.0/24
+  07SubnetName:
+    Description: Input a subnet name for department identification (ex. Development)
+    Type: String
+    Default: Subnet3Name
+  08SubnetCidrBlock: 
+    Description: Input the subnet cidr block (ex 192.168.10.0/24)
+    Type: String
+    Default: 192.168.30.0/24
+  09SubnetName:
+    Description: Input a subnet name for department identification (ex. Development)
+    Type: String
+    Default: Subnet4Name
+  10SubnetCidrBlock: 
+    Description: Input the subnet cidr block (ex 192.168.10.0/24)
+    Type: String
+    Default: 192.168.40.0/24
+
+# This is the section where the actual resources are specified
+
+Resources: 
+
+#VPC is specified here
+  
+  VPC1: 
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref 02VPCCidrBlock
+      Tags:
+        - Key: Name
+          Value: !Ref 01VPCName
+
+# Subnets are specified here
+  Subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: 
+        Ref: VPC1
+      CidrBlock: !Ref 04SubnetCidrBlock
+      Tags:
+        - Key: Name
+          Value: !Ref 03SubnetName
+  Subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: 
+        Ref: VPC1
+      CidrBlock: !Ref 06SubnetCidrBlock
+      Tags:
+        - Key: Name
+          Value: !Ref 05SubnetName
+  Subnet3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: 
+        Ref: VPC1
+      CidrBlock: !Ref 08SubnetCidrBlock
+      Tags:
+        - Key: Name
+          Value: !Ref 07SubnetName
+  Subnet4:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: 
+        Ref: VPC1
+      CidrBlock: !Ref 10SubnetCidrBlock
+      Tags:
+        - Key: Name
+          Value: !Ref 09SubnetName
+
+# This is where the security groups are specified. 
+# Change the Logical Name in order for the name to show
+# up in the dropdown menus for other templates that 
+# utilize the resources created here. For instance: 
+#  SecurityGroup1:
+#    Type: AWS::EC2::SecurityGroup
+# Change it to - 
+#  NameofSecurityGroup1:
+#    Type: AWS::EC2::SecurityGroup 
+
+  SecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Opens SSH up for Security Group 1
+      VpcId: 
+        Ref: VPC1
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Ref 03SubnetName
+  SecurityGroup2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Opens SSH up for Security Group 2
+      VpcId: 
+        Ref: VPC1
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Ref 05SubnetName
+  SecurityGroup3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Opens SSH up for Security Group 3
+      VpcId: 
+        Ref: VPC1
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Ref 07SubnetName
+  SecurityGroup4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Opens SSH up for Security Group 4
+      VpcId: 
+        Ref: VPC1
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Ref 09SubnetName
+
+# This is the internet gateway and the call 
+# to attach the internet gateway to the VPC
+
+  internetgateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: internetgateway
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: 
+        Ref: VPC1
+      InternetGatewayId: !Ref internetgateway
+  
+  # This section adds a route for each routing table 
+  # to allow for traffic to flow in and out of 
+  # the subnets
+
+  PublicRoute1: 
+    Type: 'AWS::EC2::Route'
+    DependsOn:
+      - AttachGateway
+    Properties:
+      RouteTableId: !Ref group1routeTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref internetgateway
+      
+  PublicRoute2: 
+    Type: 'AWS::EC2::Route'
+    DependsOn:
+      - AttachGateway
+    Properties:
+      RouteTableId: !Ref group2routeTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref internetgateway
+
+
+  PublicRoute3: 
+    Type: 'AWS::EC2::Route'
+    DependsOn:
+      - AttachGateway
+    Properties:
+      RouteTableId: !Ref group3routeTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref internetgateway
+      
+  PublicRoute4: 
+    Type: 'AWS::EC2::Route'
+    DependsOn:
+      - AttachGateway
+    Properties:
+      RouteTableId: !Ref group4routeTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref internetgateway
+
+  group1routeTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: VPC1
+      Tags:
+        - Key: Name
+          Value: Development_RT
+  routeTable1AssocName:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: 
+        Ref: Subnet1
+      RouteTableId: 
+        Ref: group1routeTable
+
+  group2routeTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: VPC1
+      Tags:
+        - Key: Name
+          Value: QC_RT
+
+  routeTable2AssocName:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: 
+        Ref: Subnet2
+      RouteTableId: 
+        Ref: group2routeTable
+  
+  group3routeTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: VPC1
+      Tags:
+        - Key: Name
+          Value: QA_RT
+  routeTable3AssocName:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: 
+        Ref: Subnet3
+      RouteTableId: 
+        Ref: group3routeTable
+  
+  group4routeTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: VPC1
+      Tags:
+        - Key: Name
+          Value: Production_RT
+  routeTable4AssocName:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: 
+        Ref: Subnet4
+      RouteTableId: 
+        Ref: group4routeTable
