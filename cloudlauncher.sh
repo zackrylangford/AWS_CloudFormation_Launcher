@@ -14,11 +14,11 @@ while [[ ${can_continue}=true ]]; do
 read input
 
 if [[ $input -eq 1 ]]; then
-	echo -e "You have selected a single VPC with 4 subnets\n"
-	
+	echo -e "You have selected a single VPC with 4 subnets, what would you like to name it?\n\n\nLaunching Now!!!\n\n\n"
+	echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file://cloudlauncher/AWS_CloudFormation_Launcher/03_1_S3_Bucket_NO_Parameters.yml)"
 	
 ### Actual Commands for later use
-### echo -e "$(hostname)\n\n"
+### echo -e "$(command)\n\n"
 elif [[ $input -eq 2 ]]; then
 	echo -e "You have selected One EC2 Instance\n"
 
@@ -52,7 +52,7 @@ elif [[ $input -eq 6 ]]; then
 elif [[ $input = q ]]; then
 	echo "Quitting Now"
 	break
-	
+
 else
 	echo -e "Please enter a valid response (1-5 or q to quit)\n\n"
 fi
