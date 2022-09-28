@@ -15,7 +15,7 @@ read input
 
 if [[ $input -eq 1 ]]; then
 	echo -e "You have selected a single VPC with 4 subnets, what would you like to name it?\n\n\nLaunching Now!!!\n\n\n"
-	echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file://cloudlauncher/AWS_CloudFormation_Launcher/03_1_S3_Bucket_NO_Parameters.yml)"
+	echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/03_1_S3_Bucket_NO_Parameters.yml)"
 	
 ### Actual Commands for later use
 ### echo -e "$(command)\n\n"
