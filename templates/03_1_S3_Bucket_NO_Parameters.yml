@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: S3 Bucket with no parameters for testing 
+Resources: 
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      AccessControl: Private
+      BucketName: pheonix_corp_S3_bucket
+      LifecycleConfiguration: 
+      Tags:
+        - Key: Name
+          Value: TestBucketforCloudLauncher
