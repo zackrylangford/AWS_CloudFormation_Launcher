@@ -1,6 +1,5 @@
 #!/bin/bash
 
-while [[ ${can_continue}=true ]]; do
 	sleep .5
 	echo -e "\n.\n.\n.\n.\n.\n.\n.\n."
 	sleep .5
@@ -16,7 +15,12 @@ while [[ ${can_continue}=true ]]; do
 	sleep .5
 	echo -e "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 	sleep .5
-	echo -e "\n\n\n\nWhat would you like to launch today?"
+	echo -e "What would you like to launch today?"
+
+# Main Menu Loop - This will be the menu that starts the "triage" and brings the user to select the proper template.
+
+while [[ ${can_continue}=true ]]; do
+	echo -e "Main Menu - Select a Template to Launch"
 	echo -e "\n1. Single VPC with 4 subnets"
 	echo -e "\n2. One EC2 Instance"
 	echo -e "\n3. Two EC2 Instances"
