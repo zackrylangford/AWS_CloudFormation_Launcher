@@ -15,6 +15,11 @@ COMPLETE Milestone 1 - Text output is correctly outputting the command that need
 
 5. Run the CloudLauncher Program to see if it works
 
+6. Add code to have the status of the stack run (need to find the code for the status)
+
+
+
+
 
 ### Refactoring Tasks 
 
@@ -35,6 +40,10 @@ this will be done from the GUI with status graphics, error messages, etc.)
 3. Have it automatically add user information from AWS (CLI information so the user doesn't have to go and find it or remember it)
 4. Have it save the users info and allow them to remain logged in so they can 
 5. Figuring out how to configure the installation of the script and program on a new users machine so everything is in the right place and the script knows where to call for the templates (which directory the templates will be located in on the users machine) 
+6. Need to add code to delete the stack if there are any errors in creating the stack. (i.e. when there is an error creating the stack, it should automatically delete the stack). How would that work? Would you put conditions in it? 
+7. Need to figure out how to allow for custom parameters (these can actually be passed through the bash script and then the template will catch them)
+
+
 
 
 
