@@ -41,7 +41,7 @@ read input
 # Launch script for 01 - VPC with 4 Subnets
 
 if [[ $input -eq 1 ]]; then
-	echo -e "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\Launching VPC with 4 Subnets.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.Launching VPC with 4 Subnets.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 	echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/03_1_S3_Bucket_NO_Parameters.yml)"
 	sleep 1
@@ -55,9 +55,7 @@ if [[ $input -eq 1 ]]; then
 	sleep 1
 	echo -e "." 
 	echo -e "$(aws cloudformation wait stack-create-complete --stack-name myteststack)"
-	echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
-
-
+	echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)\n.Launch successful!!!\n.\n.\n.\n.\n.\n.\n."
 
 
 # Launch command for 02 - 1 EC2 instance 
@@ -88,7 +86,14 @@ elif [[ $input -eq 6 ]]; then
 	echo -e "\n.\n.\n.\n.\nLaunching 1 S3 bucket.....\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n."
 
 elif [[ $input = q ]]; then
-	echo -e "\n.\n.\n.\n.\nQuitting Now\n\n.\n.\n.\n.\n.\n.\n.\n."
+	echo -e "\n.\n.\n.\n.\nQuitting Now\n"
+	sleep .25
+	echo -e "."	
+	sleep .25
+	echo -e "."	
+	sleep .25
+	echo -e "."
+	sleep .25
 	echo -e "Goodbye..."
 	break
 
