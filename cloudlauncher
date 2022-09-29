@@ -14,7 +14,7 @@
 	sleep .5
 	echo -e "........................................................\n"
 	sleep .5
-	echo -e ".......What would you like to launch today? Testing to see if this works............\n\n"
+	echo -e ".......TESTING THE SCRIPTWhat would you like to launch today? Testing to see if this works............\n\n"
 
 # Main Menu Loop - This will be the menu that starts the "triage" and brings the user to select the proper template.
 
