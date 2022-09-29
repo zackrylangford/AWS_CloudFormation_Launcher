@@ -17,7 +17,14 @@ COMPLETE Milestone 1 - Text output is correctly outputting the command that need
 
 6. Add code to have the status of the stack run (need to find the code for the status)
 
+Complete Milestone 2 - The code works!!! I can go through the menu and launch stack templates from the menu. 
 
+The next challenge will be to figure out how to pass parameters to the templates so that I can customize the templates before they are launched. 
+
+I need the program to let me select the template I want to launch, then prompt me for each parameter, then input those parameters into the aws cloudformation command along with the template, which should pass the parameters through and create the resources with the correct parameters! 
+
+
+Milestone 3 - Passing Parameters
 
 
 
