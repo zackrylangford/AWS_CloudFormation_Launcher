@@ -81,7 +81,10 @@ Need to organize these thoughts better :)
 
 
 
+### Installation Thoughts:
 
-
-
+Need to figure out the install process and script eventually. I have no idea how to package this so it works on other machines. 
+Do I use an install script that copies all of the various pieces in the right places so that the script runs correctly on any linux machine? 
+For instance: the install script copies the main script into /bin a long with the dependent scripts? Or do the dependent scripts stay in a folder and I copy the folder into 
+the correct place on the machine so that the paths within the script work? I guess it's just however I want to arrange it so that it is simple and easy to use! 
 
