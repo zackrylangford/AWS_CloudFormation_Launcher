@@ -63,7 +63,24 @@ I have a cloudformation directory on my Linux VM where I am storing the template
 
 What about keypairs? Should there be away to create a key pair and then pull the name??? What about a quick script to create a keypair and return the name of the keypair so that when you go to make an ec2, it is ready to go??? Need to lookup the CLI command to create a key pair and print the key pair name. 
 
+The command used to create a key pair: create-key-pair 
+
+Script for creating keypair: 
+
+#!/bin/bash
+
+echo -e $(aws create-key-pair --key-pair-name <keyname>] --output) 
+  
+  (There is also an import-key-pair command that I need to look at to see if I can get the keypair to save - maybe in the keypair folder??)
+ 
+ 
+
+
+
 Need to organize these thoughts better :) 
+
+
+
 
 
 
