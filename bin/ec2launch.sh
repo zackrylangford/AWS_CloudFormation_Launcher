@@ -115,5 +115,3 @@ elif [[ $instances = b ]]; then
 
 else 
     echo -e "\n.\n.\n.\n.Please enter a valid response (1-4 or b to go back)\n\n"
-
-done
