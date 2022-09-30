@@ -109,7 +109,11 @@ elif [[ $instances -eq 4 ]]; then
 	# echo -e "$(aws cloudformation wait stack-create-complete --stack-name myteststack)"
 	# echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)\n.\nLaunch successful!!!\n."
   	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
+
 elif [[ $instances = b ]]; then
 	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
-else echo -e "\n.\n.\n.\n.Please enter a valid response (1-4 or b to go back)\n\n"
 
+else 
+    echo -e "\n.\n.\n.\n.Please enter a valid response (1-4 or b to go back)\n\n"
+
+done
