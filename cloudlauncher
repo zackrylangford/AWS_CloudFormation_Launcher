@@ -20,7 +20,7 @@
 
 while [[ ${can_continue}=true ]]; do
 	echo -e "Main Menu\n" 
-	echo "Select a type to launch\n\n"
+	echo -e "Select a type to launch\n\n"
 	echo -e "\n1. VPC"
 	echo -e "\n2. EC2"
 	echo -e "\n3. S3"
@@ -30,15 +30,15 @@ read input
 
 # For VPCs:
 if [[ $input -eq 1 ]]; then
-	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/vpclaunch"
+	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/vpclaunch.sh"
 
 # For EC2 Instances 
 elif [[ $input -eq 2 ]]; then
-	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/ec2launch"
+	exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/ec2launch.sh"
 
 # For S3 Buckets
 elif [[ $input -eq 3 ]]; then
-exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/s3launch"
+exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/s3launch.sh"
 
 elif [[ $input = q ]]; then
 	echo -e "\n.\n.\n.\n.\nQuitting Now\n"

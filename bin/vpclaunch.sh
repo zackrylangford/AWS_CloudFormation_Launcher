@@ -35,4 +35,4 @@ sleep .15
 # echo -e "$(aws cloudformation wait stack-create-complete --stack-name myteststack)"
 # echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)\n.\nLaunch successful!!!\n."
 
-exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/menu"
+exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
