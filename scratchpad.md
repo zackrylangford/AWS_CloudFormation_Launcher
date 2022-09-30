@@ -1,11 +1,10 @@
 ### Notes to help guide my work
 
-These are the steps I need to take to get this program up and running. 
 
 ### Next Steps
-COMPLETE 1. Get program to the point where it will output what I need it to in text format first (don't worry about running the actual commands at this point)
+COMPLETE _______ 1. Get program to the point where it will output what I need it to in text format first (don't worry about running the actual commands at this point)
 
-COMPLETE Milestone 1 - Text output is correctly outputting the command that needs to run 
+COMPLETE__________ Milestone 1 - Text output is correctly outputting the command that needs to run 
 
 2. Create a really basic template that has NO parameters to pass through to test launch capabilities 
 
@@ -17,14 +16,14 @@ COMPLETE Milestone 1 - Text output is correctly outputting the command that need
 
 6. Add code to have the status of the stack run (need to find the code for the status)
 
-Complete Milestone 2 - The code works!!! I can go through the menu and launch stack templates from the menu. 
+COMPLETE__ Milestone 2 - The code works!!! I can go through the menu and launch stack templates from the menu. 
 
 The next challenge will be to figure out how to pass parameters to the templates so that I can customize the templates before they are launched. 
 
 I need the program to let me select the template I want to launch, then prompt me for each parameter, then input those parameters into the aws cloudformation command along with the template, which should pass the parameters through and create the resources with the correct parameters! 
 
 
-Milestone 3 - Passing Parameters
+Milestone 3 - Passing Parameters so that the templates are customizable. 
 
 
 
@@ -57,4 +56,15 @@ this will be done from the GUI with status graphics, error messages, etc.)
 
 ### Current configuration notes
 
-I have a cloudformation directory on my Linux VM where I am storing the templates. I have to run the script out of this directory currently for it to work. 
+I have a cloudformation directory on my Linux VM where I am storing the templates. I have to run the script out of this directory currently for it to work.
+
+
+### Random thoughts
+
+What about keypairs? Should there be away to create a key pair and then pull the name??? What about a quick script to create a keypair and return the name of the keypair so that when you go to make an ec2, it is ready to go??? Need to lookup the CLI command to create a key pair and print the key pair name. 
+
+Need to organize these thoughts better :) 
+
+
+
+
