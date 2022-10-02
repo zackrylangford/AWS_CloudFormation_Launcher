@@ -12,7 +12,7 @@ sleep .15
 echo -e "."
 sleep .15
 echo -e "Launching VPC with 4 Subnets....."
-echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/01_VPC_with_4_Subnets.yml)"
+echo -e "$(aws cloudformation create-stack --stack-name myteststack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/02_2_EC2_NO_PARAMETERS.yml)"
 sleep 1
 echo -e "."
 sleep 1
