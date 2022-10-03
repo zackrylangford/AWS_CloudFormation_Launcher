@@ -78,7 +78,7 @@ sleep .15
 
 # This will be added to the appropriate parameter section with the launch sequence function pulled and put on a different page. 
 
-echo -e "$(aws cloudformation wait stack-create-complete --stack-name myteststack)"
-echo -e "$(aws cloudformation describe-stack-resources --stack-name myteststack)\n.\nLaunch successful!!!\n."
+# echo -e "$(aws cloudformation wait stack-create-complete --stack-name $vpc_name)"
+# echo -e "$(aws cloudformation describe-stack-resources --stack-name $vpc_name)\n.\nLaunch successful!!!\n."
 
-exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
+exec -e "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
