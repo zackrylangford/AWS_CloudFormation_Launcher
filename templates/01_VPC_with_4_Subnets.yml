@@ -68,40 +68,40 @@ Resources:
       AvailabilityZone: us-east-1a
       VpcId: 
         Ref: VPC1
-      CidrBlock: !Ref 04SubnetCidrBlock
+      CidrBlock: !Ref 04Subnet1CidrBlock
       Tags:
         - Key: Name
-          Value: !Ref 03SubnetName
+          Value: !Ref 03Subnet1Name
   Subnet2:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-east-1a
       VpcId: 
         Ref: VPC1
-      CidrBlock: !Ref 06SubnetCidrBlock
+      CidrBlock: !Ref 06Subnet2CidrBlock
       Tags:
         - Key: Name
-          Value: !Ref 05SubnetName
+          Value: !Ref 05Subnet2Name
   Subnet3:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-east-1a
       VpcId: 
         Ref: VPC1
-      CidrBlock: !Ref 08SubnetCidrBlock
+      CidrBlock: !Ref 08Subnet3CidrBlock
       Tags:
         - Key: Name
-          Value: !Ref 07SubnetName
+          Value: !Ref 07Subnet3Name
   Subnet4:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-east-1a
       VpcId: 
         Ref: VPC1
-      CidrBlock: !Ref 10SubnetCidrBlock
+      CidrBlock: !Ref 10Subnet4CidrBlock
       Tags:
         - Key: Name
-          Value: !Ref 09SubnetName
+          Value: !Ref 09Subnet4Name
 
 # This is where the security groups are specified. 
 # Change the Logical Name in order for the name to show
@@ -126,7 +126,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: !Ref 03SubnetName
+          Value: !Ref 03Subnet1Name
   SecurityGroup2:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -140,7 +140,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: !Ref 05SubnetName
+          Value: !Ref 05Subnet2Name
   SecurityGroup3:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -154,7 +154,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: !Ref 07SubnetName
+          Value: !Ref 07Subnet3Name
   SecurityGroup4:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -168,7 +168,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: !Ref 09SubnetName
+          Value: !Ref 09Subnet4Name
 
 # This is the internet gateway and the call 
 # to attach the internet gateway to the VPC
@@ -234,7 +234,7 @@ Resources:
         Ref: VPC1
       Tags:
         - Key: Name
-          Value: Development_RT
+          Value: !Ref 03Subnet1Name
   routeTable1AssocName:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -250,7 +250,7 @@ Resources:
         Ref: VPC1
       Tags:
         - Key: Name
-          Value: QC_RT
+          Value: !Ref 05Subnet2Name
 
   routeTable2AssocName:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -267,7 +267,7 @@ Resources:
         Ref: VPC1
       Tags:
         - Key: Name
-          Value: QA_RT
+          Value: !Ref 07Subnet3Name
   routeTable3AssocName:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -283,7 +283,7 @@ Resources:
         Ref: VPC1
       Tags:
         - Key: Name
-          Value: Production_RT
+          Value: !Ref 09Subnet4Name
   routeTable4AssocName:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
