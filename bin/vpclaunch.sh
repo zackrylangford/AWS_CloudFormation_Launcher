@@ -35,7 +35,7 @@ echo -e "."
 sleep .15 
 echo -e "."
 sleep .15
-echo -e "$(aws cloudformation create-stack --stack-name $vpc_name --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/01_VPC_with_4_Subnets.yml" --parameters ParameterKey=01VPCName,ParameterValue=$vpc_name ParameterKey=02VPCCidrBlock,ParameterValue=$vpc_cidr ParameterKey=03Subnet1Name,ParameterValue=$subnet1name ParameterKey=04SubnetCidrBlock,ParameterValue=$cidr_one ParameterKey=05Subnet2Name,ParameterValue=$subnet2name ParameterKey=06Subnet2CidrBlock,ParameterValue=$cidr_two ParameterKey=07Subnet3Name,ParameterValue=$subnet3name ParameterKey=08Subnet3CidrBlock,ParameterValue=$cidr_three ParameterKey=09Subnet4Name,ParameterValue=$subnet4name ParameterKey=10Subnet4Cidr,ParameterValue=$cidr_four)"
+echo -e "$(aws cloudformation create-stack --stack-name $vpc_name --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/01_VPC_with_4_Subnets.yml --parameters ParameterKey=01VPCName,ParameterValue=$vpc_name ParameterKey=02VPCCidrBlock,ParameterValue=$vpc_cidr ParameterKey=03Subnet1Name,ParameterValue=$subnet1name ParameterKey=04SubnetCidrBlock,ParameterValue=$cidr_one ParameterKey=05Subnet2Name,ParameterValue=$subnet2name ParameterKey=06Subnet2CidrBlock,ParameterValue=$cidr_two ParameterKey=07Subnet3Name,ParameterValue=$subnet3name ParameterKey=08Subnet3CidrBlock,ParameterValue=$cidr_three ParameterKey=09Subnet4Name,ParameterValue=$subnet4name ParameterKey=10Subnet4Cidr,ParameterValue=$cidr_four)"
 sleep 3 
 echo "Launching now...." 
 
