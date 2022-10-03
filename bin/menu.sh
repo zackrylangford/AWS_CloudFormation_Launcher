@@ -1,7 +1,8 @@
 #!/bin/bash
 
+
 while [[ ${can_continue}=true ]]; do
-	echo -e "Main Menu\n" 
+	echo -e "You are back at the main menu\n" 
 	echo "Select a type to launch"
 	echo -e "\n1. VPC"
 	echo -e "\n2. EC2"

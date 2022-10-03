@@ -18,31 +18,31 @@ Parameters:
     Description: Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet1Name
-  04SubnetCidrBlock: 
+  04Subnet1CidrBlock: 
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
     Default: 192.168.10.0/24
-  05SubnetName:
+  05Subnet2Name:
     Description: Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet2Name
-  06SubnetCidrBlock: 
+  06Subnet2CidrBlock: 
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
     Default: 192.168.20.0/24
-  07SubnetName:
+  07Subnet3Name:
     Description: Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet3Name
-  08SubnetCidrBlock: 
+  08Subnet3CidrBlock: 
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
     Default: 192.168.30.0/24
-  09SubnetName:
+  09Subnet4Name:
     Description: Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet4Name
-  10SubnetCidrBlock: 
+  10Subnet4CidrBlock: 
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
     Default: 192.168.40.0/24
