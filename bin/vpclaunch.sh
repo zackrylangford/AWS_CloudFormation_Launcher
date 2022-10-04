@@ -70,8 +70,8 @@ echo -e "$(aws cloudformation wait stack-create-complete --stack-name $vpc_name)
 pid=$!
 
 while kill -0 $pid &>/dev/null; do
-    printf "\x1b[5mZipping...\x1b[25m"
-    echo -e "Launching VPC with 4 Subnets....."
+    printf "\x1b[Launching stack...\x1b[25m"
+    sleep 1.5
 done
 
 # If successful
