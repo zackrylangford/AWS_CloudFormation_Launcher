@@ -62,23 +62,22 @@ echo -e "."
 sleep 1 
 echo -e "."
 
-# This could eventually go at the end if everything was successful??
-sleep 1
-echo -e "Launch Successful!.\n\n\n\n" 
-sleep .15
-echo -e "."
-sleep .15
-echo -e "."
-sleep .15
-echo -e "."
-sleep .15 
-echo -e "."
-sleep .15
 
 
 # This will be added to the appropriate parameter section with the launch sequence function pulled and put on a different page. 
 
-echo -e "$(aws cloudformation wait stack-create-complete --stack-name $vpc_name)"
-echo -e "$(aws cloudformation describe-stack-resources --stack-name $vpc_name)\n.\nLaunch successful!!!\n."
+echo -e "$(aws cloudformation wait stack-create-complete --stack-name $vpc_name)" &
+pid=$!
+
+while kill -0 $pid &>/dev/null; do
+    printf "\x1b[5mZipping...\x1b[25m"
+    echo -e "Launching VPC with 4 Subnets....."
+done
+
+# If successful
+sleep 1
+echo -e "Launch Successful!\n\n\n\n" 
+
+
 
 exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
