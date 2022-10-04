@@ -70,14 +70,26 @@ echo -e "$(aws cloudformation wait stack-create-complete --stack-name $vpc_name)
 pid=$!
 
 while kill -0 $pid &>/dev/null; do
-    printf "\x1b[Launching stack...\x1b[25m"
-    sleep 1.5
+    echo "."
+    sleep 2
+    echo ".."
+    sleep 2.5
+    echo "..."
+    sleep 2.5
+    echo "...."
+    sleep 2.5
+    echo ".."
+    sleep 2.5
+    echo "."
+    sleep 2.5
 done
 
 # If successful
-sleep 1
-echo -e "Launch Successful!\n\n\n\n" 
 
+sleep 1
+echo -e "\n\nLaunch Successful!\n\n"
+sleep 1
+echo -e "$vpc_name is up and running!\n"
 
 
 exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"
