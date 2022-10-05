@@ -32,34 +32,32 @@ sleep .15
 echo -e "."
 sleep .15
 echo -e "."
+echo -e "Launching VPC with 4 Subnets....."
 sleep .15 
 echo -e "."
 sleep .15
 echo -e "$(aws cloudformation create-stack --stack-name $vpc_name --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/01_VPC_with_4_Subnets.yml --parameters ParameterKey=01VPCName,ParameterValue=$vpc_name ParameterKey=02VPCCidrBlock,ParameterValue=$vpc_cidr ParameterKey=03Subnet1Name,ParameterValue=$subnet1name ParameterKey=04Subnet1CidrBlock,ParameterValue=$cidr_one ParameterKey=05Subnet2Name,ParameterValue=$subnet2name ParameterKey=06Subnet2CidrBlock,ParameterValue=$cidr_two ParameterKey=07Subnet3Name,ParameterValue=$subnet3name ParameterKey=08Subnet3CidrBlock,ParameterValue=$cidr_three ParameterKey=09Subnet4Name,ParameterValue=$subnet4name ParameterKey=10Subnet4CidrBlock,ParameterValue=$cidr_four)"
-sleep 3 
-echo "Launching now...." 
+
 
 
 #Launch output for VPC (could make this into it's own script to call - like a function when refactoring, so I don't have to copy and paste
 # it over and over) launch_sequence
 
-sleep .15
+sleep .10
 echo -e "."
-sleep .15
+sleep .10
 echo -e "."
-sleep .15
+sleep .10
 echo -e "."
-sleep .15 
+sleep .10 
 echo -e "."
-sleep .15
-echo -e "Launching VPC with 4 Subnets....."
-sleep 1
+sleep .10
 echo -e "."
-sleep 1
+sleep .10
 echo -e "."
-sleep 1
+sleep .10
 echo -e "."
-sleep 1 
+sleep .10 
 echo -e "."
 
 
@@ -71,25 +69,21 @@ pid=$!
 
 while kill -0 $pid &>/dev/null; do
     echo "."
-    sleep 2
+    sleep 5
     echo ".."
-    sleep 2.5
+    sleep 5
     echo "..."
-    sleep 2.5
+    sleep 5
     echo "...."
-    sleep 2.5
+    sleep 5
     echo ".."
-    sleep 2.5
-    echo "."
-    sleep 2.5
+    sleep 5
+
 done
 
 # If successful
-
-sleep 1
 echo -e "\n\nLaunch Successful!\n\n"
 sleep 1
-echo -e "$vpc_name is up and running!\n"
-
+echo -e "$vpc_name is up and running!\n\n"
 
 exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/menu.sh"

@@ -1,32 +1,25 @@
 #!/bin/bash
 	sleep .5
-	echo -e "........................................................\n"	
-	sleep .5
-	echo -e "........................................................\n"	
-	sleep .5
 	echo -e "........................................................\n"
 	echo -e "  _   _   _   _   _   _   _   _   _   _   _   _   _ \n"
 	echo -e " / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \\n"
-	echo -e "(               CloudLauncher                       )\n"
+	echo -e "(   ----------------CloudLauncher----------------   )\n"
 	echo -e " \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \n"
-	sleep .5
 	echo -e "........................................................\n"	
 	sleep .5
-	echo -e "........................................................\n"
-	sleep .5
-	echo -e ".......What would you like to launch today? ............\n\n"
 
 # Main Menu Loop - This will be the menu that starts the "triage" and brings the user to select the proper template.
 
 while [[ ${can_continue}=true ]]; do
-	echo -e "Main Menu\n" 
-	echo -e "Select a type to launch\n\n"
+	echo -e "         Main Menu    \n" 
+	echo -e "What would you like to launch?\n"
 	echo -e "\n1. VPC"
 	echo -e "\n2. EC2"
 	echo -e "\n3. S3"
-	echo -e "\n\nPress q to quit"
+	echo "\nPress 'q' to quit"
 
 read input
+    echo -e "\n"
 
 # For VPCs:
 if [[ $input -eq 1 ]]; then
@@ -41,7 +34,7 @@ elif [[ $input -eq 3 ]]; then
 exec "/home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/bin/s3launch.sh"
 
 elif [[ $input = q ]]; then
-	echo -e "\n.\n.\n.\n.\nQuitting Now\n"
+	echo -e "\n\n\nQuitting Now"
 	sleep .25
 	echo -e "."	
 	sleep .25
