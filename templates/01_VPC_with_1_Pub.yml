@@ -65,11 +65,6 @@ Resources:
       GroupDescription: Opens SSH up for Security Group 1
       VpcId: 
         Ref: VPC1
-      SecurityGroupEgress:
-        - IpProtocol: All
-          FromPort: All
-          ToPort: All
-          CidrIp: 0.0.0.0/0
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
