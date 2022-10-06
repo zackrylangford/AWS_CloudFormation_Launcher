@@ -16,7 +16,7 @@ while [[ ${can_continue}=true ]]; do
 	echo -e "\n1. VPC"
 	echo -e "\n2. EC2"
 	echo -e "\n3. S3"
-	echo "\nPress 'q' to quit"
+	echo -e "\nPress 'q' to quit"
 
 read input
     echo -e "\n"
