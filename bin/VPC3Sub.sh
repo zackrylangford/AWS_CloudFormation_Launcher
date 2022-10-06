@@ -2,7 +2,7 @@
 
 #Ask user to input the name of the VPC 
 
-read -p 'Input a name for your VPC/Subnet Stack:' vpc_name
+read -p 'Input a name for your VPC:' vpc_name
 read -p 'Cidr block for VPC:' vpc_cidr
 
 
