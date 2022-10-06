@@ -59,7 +59,7 @@ Resources:
 #  NameofSecurityGroup1:
 #    Type: AWS::EC2::SecurityGroup 
 
-  03Subnet1Name:
+  SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Opens SSH up for Security Group 1
