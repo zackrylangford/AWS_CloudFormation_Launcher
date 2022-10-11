@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: VPC with 4 Public subnets
+Description: VPC with 3 Public subnets and 1 Private Subnet
 
 # This section gives the user options for naming the VPC, Subnets
 # as well as allowing the user to input a custom CIDR block structure
@@ -15,7 +15,7 @@ Parameters:
     Type: String
     Default: 192.168.0.0/16
   03Subnet1Name:
-    Description: Input a subnet name for department identification (ex. Development)
+    Description: This is a public subnet. Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet1Name
   04Subnet1CidrBlock: 
@@ -23,7 +23,7 @@ Parameters:
     Type: String
     Default: 192.168.10.0/24
   05Subnet2Name:
-    Description: Input a subnet name for department identification (ex. Development)
+    Description: This is a public subnet. Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet2Name
   06Subnet2CidrBlock: 
@@ -31,7 +31,7 @@ Parameters:
     Type: String
     Default: 192.168.20.0/24
   07Subnet3Name:
-    Description: Input a subnet name for department identification (ex. Development)
+    Description: This is a public subnet. Input a subnet name for department identification (ex. Development)
     Type: String
     Default: Subnet3Name
   08Subnet3CidrBlock: 
@@ -39,9 +39,9 @@ Parameters:
     Type: String
     Default: 192.168.30.0/24
   09Subnet4Name:
-    Description: Input a subnet name for department identification (ex. Development)
+    Description: This is a private subnet. Input a subnet name for department identification (ex. Development)
     Type: String
-    Default: Subnet4Name
+    Default: PrivateSubnet4Name
   10Subnet4CidrBlock: 
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
@@ -116,13 +116,25 @@ Resources:
   SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 1
+      GroupDescription: Opens SSH, HTTP, HTTPS, and RDP for Security Group 1
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
@@ -130,13 +142,25 @@ Resources:
   SecurityGroup2:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 2
+      GroupDescription: Opens SSH, HTTP, HTTPS, and RDP for Security Group 2
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
@@ -144,7 +168,7 @@ Resources:
   SecurityGroup3:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 3
+      GroupDescription: Opens SSH, HTTP, HTTPS, and RDP for Security Group 3
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
@@ -152,19 +176,35 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
+          CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
           Value: !Ref 07Subnet3Name
   SecurityGroup4:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 4
+      GroupDescription: Opens SSH, and RDP for Security Group 1
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name

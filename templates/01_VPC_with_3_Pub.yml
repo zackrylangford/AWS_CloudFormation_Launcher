@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: VPC with 4 Public subnets
+Description: VPC with 3 Public Subnets
 
 # This section gives the user options for naming the VPC, Subnets
 # as well as allowing the user to input a custom CIDR block structure
@@ -38,15 +38,6 @@ Parameters:
     Description: Input the subnet cidr block (ex 192.168.10.0/24)
     Type: String
     Default: 192.168.30.0/24
-  09Subnet4Name:
-    Description: Input a subnet name for department identification (ex. Development)
-    Type: String
-    Default: Subnet4Name
-  10Subnet4CidrBlock: 
-    Description: Input the subnet cidr block (ex 192.168.10.0/24)
-    Type: String
-    Default: 192.168.40.0/24
-
 # This is the section where the actual resources are specified
 
 Resources: 
@@ -88,20 +79,12 @@ Resources:
       AvailabilityZone: us-east-1c
       VpcId: 
         Ref: VPC1
-      CidrBlock: !Ref 08Subnet3CidrBlock
+      CidrBlock: !Ref 06Subnet3CidrBlock
       Tags:
         - Key: Name
-          Value: !Ref 07Subnet3Name
-  Subnet4:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-east-1d
-      VpcId: 
-        Ref: VPC1
-      CidrBlock: !Ref 10Subnet4CidrBlock
-      Tags:
-        - Key: Name
-          Value: !Ref 09Subnet4Name
+          Value: !Ref 05Subnet3Name
+
+
 
 # This is where the security groups are specified. 
 # Change the Logical Name in order for the name to show
@@ -116,13 +99,25 @@ Resources:
   SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 1
+      GroupDescription: Opens SSH, HTTP, HTTPS, RDP for Security Group 1
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
@@ -130,45 +125,56 @@ Resources:
   SecurityGroup2:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 2
+      GroupDescription: Opens SSH, HTTP, HTTPS, RDP for Security Group 2
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
           Value: !Ref 05Subnet2Name
+
   SecurityGroup3:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Opens SSH up for Security Group 3
+      GroupDescription: Opens SSH, HTTP, HTTPS, RDP for Security Group 3
       VpcId: 
         Ref: VPC1
       SecurityGroupIngress:
         - IpProtocol: tcp 
           FromPort: 22
           ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 3389
+          ToPort: 3389
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
           Value: !Ref 07Subnet3Name
-  SecurityGroup4:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Opens SSH up for Security Group 4
-      VpcId: 
-        Ref: VPC1
-      SecurityGroupIngress:
-        - IpProtocol: tcp 
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-      Tags:
-        - Key: Name
-          Value: !Ref 09Subnet4Name
 
 # This is the internet gateway and the call 
 # to attach the internet gateway to the VPC
@@ -207,23 +213,12 @@ Resources:
       RouteTableId: !Ref group2routeTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref internetgateway
-
-
   PublicRoute3: 
     Type: 'AWS::EC2::Route'
     DependsOn:
       - AttachGateway
     Properties:
       RouteTableId: !Ref group3routeTable
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref internetgateway
-      
-  PublicRoute4: 
-    Type: 'AWS::EC2::Route'
-    DependsOn:
-      - AttachGateway
-    Properties:
-      RouteTableId: !Ref group4routeTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref internetgateway
 
@@ -259,7 +254,7 @@ Resources:
         Ref: Subnet2
       RouteTableId: 
         Ref: group2routeTable
-  
+
   group3routeTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -272,22 +267,6 @@ Resources:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: 
-        Ref: Subnet3
+        Ref: Subnet1
       RouteTableId: 
         Ref: group3routeTable
-  
-  group4routeTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: 
-        Ref: VPC1
-      Tags:
-        - Key: Name
-          Value: !Ref 09Subnet4Name
-  routeTable4AssocName:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: 
-        Ref: Subnet4
-      RouteTableId: 
-        Ref: group4routeTable
