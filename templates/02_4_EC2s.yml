@@ -1,142 +1,61 @@
 
-Description: Template for launching 4 VMs at once for Pheonix Corporation
+Description: Template for launching 3 VMs at once
 Parameters: 
  
 ### VM1 Specs
-  VM1InstanceName: 
-    Description: Name for the instance
-    Type: String
-    Default: VMInstanceName
   VM1InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM1KeyPair: 
+  VM1InstanceName: 
+    Description: Name for the instance
+    Type: String
+  KeyPair1: 
     Description: Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM1VPC: 
-    Description: Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM1Subnet: 
-    Description: Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM1SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
+    Type: String
  
 ### VM2 Specs 
-  VM2InstanceName: 
-    Description: Name for the instance (if more than one instance is being launched)
-    Type: String
-    Default: VMInstanceName
   VM2InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM2KeyPair: 
-    Description: Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM2VPC: 
-    Description:  Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM2Subnet: 
-    Description:  Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM2SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
-
-### VM3 Specs
-  VM3InstanceName: 
-    Description: Name for the instance (if more than one instance is being launched)
+  VM2InstanceName: 
+    Description: Name for the instance
     Type: String
-    Default: VMInstanceName 
+  KeyPair2: 
+    Description: Select the keypair to SSH into instance
+    Type: String
+
+### VM3 Specs 
   VM3InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM3KeyPair: 
-    Description: Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM3VPC: 
-    Description: Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM3Subnet: 
-    Description:  Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM3SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
-
-### VM4 Specs
-  VM4InstanceName: 
-    Description: Name for the instance (if more than one instance is being launched)
+  VM3InstanceName: 
+    Description: Name for the instance
     Type: String
-    Default: VMInstanceName 
+  KeyPair3: 
+    Description: Select the keypair to SSH into instance
+    Type: String
+
+
+### VM4 Specs 
   VM4InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM4KeyPair: 
-    Description:  Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM4VPC: 
-    Description: Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM4Subnet: 
-    Description: Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM4SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
+  VM4InstanceName: 
+    Description: Name for the instance
+    Type: String
+  KeyPair4: 
+    Description: Select the keypair to SSH into instance
+    Type: String
+
 
 Resources:
 ###VM1 Resource
   VMInstance1:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM1KeyPair
+      KeyName: !Ref KeyPair1
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM1InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM1SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM1Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM1InstanceName
@@ -144,16 +63,9 @@ Resources:
   VMInstance2:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM2KeyPair
+      KeyName: !Ref KeyPair2
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM2InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM2SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM2Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM2InstanceName
@@ -162,16 +74,9 @@ Resources:
   VMInstance3:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM3KeyPair
+      KeyName: !Ref KeyPair3
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM3InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM3SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM3Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM3InstanceName
@@ -181,16 +86,9 @@ Resources:
   VMInstance4:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM4KeyPair
+      KeyName: !Ref KeyPair4
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM4InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM4SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM4Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM4InstanceName

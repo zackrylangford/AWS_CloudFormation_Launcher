@@ -1,66 +1,27 @@
 
 Description: Template for launching 2 unique EC2s at once.  
 Parameters: 
- 
 ### VM1 Specs
-  VM1InstanceName: 
-    Description: Name for the instance
-    Type: String
-    Default: VMInstanceName
   VM1InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM1KeyPair: 
+  VM1InstanceName: 
+    Description: Name for the instance
+    Type: String
+  KeyPair1: 
     Description: Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM1VPC: 
-    Description: Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM1Subnet: 
-    Description: Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM1SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
+    Type: String
  
 ### VM2 Specs 
-  VM2InstanceName: 
-    Description: Name for the instance (if more than one instance is being launched)
-    Type: String
-    Default: VMInstanceName
   VM2InstanceType:
     Description: Type of VM that the user wants to launch 
     Type: String
-    Default: t2.micro
-    AllowedValues: 
-      - t2.micro
-      - m1.small
-      - m1.large
-  VM2KeyPair: 
+  VM2InstanceName: 
+    Description: Name for the instance
+    Type: String
+  KeyPair2: 
     Description: Select the keypair to SSH into instance
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "KeyPair"
-  VM2VPC: 
-    Description:  Specify the VPC to launch the instance
-    Type: "AWS::EC2::VPC::Id"
-    Default: "VPC"
-  VM2Subnet: 
-    Description:  Select the department subnet
-    Type: "AWS::EC2::Subnet::Id"
-    Default: "Subnet"
-  VM2SecurityGroup: 
-    Description: Select the security Group associated with the department
-    Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "Security Group"
+    Type: String
 
 
 Resources:
@@ -68,16 +29,9 @@ Resources:
   VMInstance1:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM1KeyPair
+      KeyName: !Ref KeyPair1
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM1InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM1SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM1Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM1InstanceName
@@ -85,16 +39,9 @@ Resources:
   VMInstance2:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: !Ref VM2KeyPair
+      KeyName: !Ref KeyPair2
       ImageId: ami-026b57f3c383c2eec
       InstanceType: !Ref VM2InstanceType
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref VM2SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref VM2Subnet
       Tags:
         - Key: 'Name'
           Value: !Ref VM2InstanceName

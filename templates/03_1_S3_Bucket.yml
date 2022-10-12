@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Pheonix Corp S3 Bucket Template
+Description: S3 Bucket Template
 Parameters: 
   BucketName: 
     Description: Set a unique name for your S3 Bucket
@@ -10,7 +10,7 @@ Resources:
     Type: AWS::S3::Bucket
     Properties: 
       AccessControl: Private
-      BucketName: pheonix_corp_S3_bucket
+      BucketName: !Ref BucketName
       LifecycleConfiguration: 
       Tags:
         - Key: Name
