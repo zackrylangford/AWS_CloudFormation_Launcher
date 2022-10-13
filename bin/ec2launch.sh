@@ -1,8 +1,8 @@
 #!/bin/bash
 
-    echo -p 'How many instances you would like to launch? (max of 4)' instances
-	echo -p 'What would you like to name this stack?' stackname 
-    echo -e "\n\nPress b to go back to main menu"
+read -p 'How many instances you would like to launch? (max of 4)' instances
+read -p 'What would you like to name this stack?' stackname 
+
 
 
 if [[ $instances -eq 1 ]]; then
@@ -19,7 +19,7 @@ if [[ $instances -eq 1 ]]; then
     echo -e "."
     sleep .15
 	echo -e "Launching 1 EC2 Instance....."
-	echo -e "$(aws cloudformation create-stack --stack-name $ecname stack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/02_1_EC2.yml --parameters ParameterKey=VMInstanceType,ParameterValue=$ectype ParameterKey=VMInstanceName,ParameterValue=$ecname ParameterKey=KeyPair, ParameterValue=$eckey)"
+	echo -e "$(aws cloudformation create-stack --stack-name $stackname stack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/02_1_EC2.yml --parameters ParameterKey=VMInstanceType,ParameterValue=$ectype ParameterKey=VMInstanceName,ParameterValue=$ecname ParameterKey=KeyPair, ParameterValue=$eckey)"
 
 
 # Launch command for 02 - 2 EC2 instances 
