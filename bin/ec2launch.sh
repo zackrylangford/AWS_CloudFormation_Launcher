@@ -66,7 +66,7 @@ elif [[ $instances -eq 3 ]]; then
     echo -e "."
     sleep .15
 	echo -e "Launching 1 EC2 Instance....."
-	echo -e "$(aws cloudformation create-stack --stack-name $ecname stack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/02_3_EC2s.yml --parameters ParameterKey=VMInstance1Type,ParameterValue=$ec1type ParameterKey=VMInstance1Name,ParameterValue=$ec1name ParameterKey=KeyPair1, ParameterValue=$ec1key ParameterKey=VMInstance2Type,ParameterValue=$ec2type ParameterKey=VMInstance2Name,ParameterValue=$ec2name ParameterKey=KeyPair2, ParameterValue=$ec2key ParameterKey=VMInstance3Type,ParameterValue=$ec3type ParameterKey=VMInstance3Name,ParameterValue=$ec3name ParameterKey=KeyPair3, ParameterValue=$ec3key)"
+	echo -e "$(aws cloudformation create-stack --stack-name $stackname stack --template-body file:///home/zackry/cloudlauncher/AWS_CloudFormation_Launcher/templates/02_3_EC2s.yml --parameters ParameterKey=VMInstance1Type,ParameterValue=$ec1type ParameterKey=VMInstance1Name,ParameterValue=$ec1name ParameterKey=KeyPair1, ParameterValue=$ec1key ParameterKey=VMInstance2Type,ParameterValue=$ec2type ParameterKey=VMInstance2Name,ParameterValue=$ec2name ParameterKey=KeyPair2, ParameterValue=$ec2key ParameterKey=VMInstance3Type,ParameterValue=$ec3type ParameterKey=VMInstance3Name,ParameterValue=$ec3name ParameterKey=KeyPair3, ParameterValue=$ec3key)"
 
 
 # Launch command for 4 EC2 instances 
